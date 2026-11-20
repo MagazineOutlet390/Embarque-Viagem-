@@ -1,0 +1,13 @@
+# Pré-lançamento / homologação: impede indexação antes da conexão do domínio oficial.
+User-agent: *
+Disallow: /
+
+# ------------------------------------------------------------------------------
+# CONFIGURAÇÃO PARA O LANÇAMENTO OFICIAL (após conectar embarqueviagem.com):
+# Remova "Disallow: /" acima e ative as linhas abaixo:
+#
+# User-agent: *
+# Allow: /
+#
+# Sitemap: https://embarqueviagem.com/sitemap.xml
+# ------------------------------------------------------------------------------

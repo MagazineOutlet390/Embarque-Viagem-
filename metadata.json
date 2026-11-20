@@ -1,0 +1,8 @@
+{
+  "name": "Embarque | Destinos, Roteiros e Dicas de Viagem",
+  "description": "Descubra destinos no Brasil e no mundo, roteiros, dicas de viagem, experiências, hospedagens e ferramentas para planejar sua próxima aventura.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
