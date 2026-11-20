@@ -279,11 +279,16 @@ export function syncPageSeo(ctx: SeoContext) {
     Boolean(article?.availableLanguages?.length) &&
     !article!.availableLanguages!.includes(currentLang);
 
+  const isDraftArticle =
+    activeView === 'article' &&
+    Boolean(article) &&
+    article?.editorialStatus === 'draft';
+
   // Mantém <html lang> sempre coerente com o idioma ativo da página
   document.documentElement.lang = SITE_CONFIG.supportedLocales[currentLang];
 
-  // Regra estrita: não indexável em pré-lançamento ou quando uma tradução ainda não existe
-  const shouldIndex = SITE_CONFIG.isIndexingEnabled && !isArticleUnavailableInLang;
+  // Regra estrita: não indexável em pré-lançamento, rascunho em preparação ou tradução inexistente
+  const shouldIndex = SITE_CONFIG.isIndexingEnabled && !isArticleUnavailableInLang && !isDraftArticle;
   upsertMeta('meta[name="robots"]', { name: 'robots' }, shouldIndex ? 'index, follow' : 'noindex, nofollow');
 
   let title = HOME_TITLES[currentLang];
@@ -293,7 +298,8 @@ export function syncPageSeo(ctx: SeoContext) {
   let availableLanguages: Language[] = ['pt', 'es', 'en'];
   let structuredData: Record<string, any> | null = null;
 
-  const canonicalUrl = isArticleUnavailableInLang ? undefined : resolveCanonicalUrl(relativePath);
+  const canonicalUrl =
+    isArticleUnavailableInLang || isDraftArticle ? undefined : resolveCanonicalUrl(relativePath);
   const homeUrl = resolveCanonicalUrl(getPathForRoute('home', undefined, currentLang));
   const blogUrl = resolveCanonicalUrl(getPathForRoute('articles', undefined, currentLang));
 
@@ -363,7 +369,7 @@ export function syncPageSeo(ctx: SeoContext) {
         datePublished: article.publishedAt,
         dateModified: article.updatedAt,
         inLanguage: SITE_CONFIG.supportedLocales[currentLang],
-        image: [ogImage],
+        ...(ogImage ? { image: [ogImage] } : {}),
         author: authorPerson,
         ...(reviewerPerson ? { reviewedBy: reviewerPerson } : {}),
         publisher: publisherOrg,
@@ -481,7 +487,13 @@ export function syncPageSeo(ctx: SeoContext) {
   upsertMeta('meta[property="og:description"]', { property: 'og:description' }, description);
   upsertMeta('meta[property="og:type"]', { property: 'og:type' }, ogType);
   upsertMeta('meta[property="og:locale"]', { property: 'og:locale' }, SITE_CONFIG.supportedLocales[currentLang].replace('-', '_'));
-  upsertMeta('meta[property="og:image"]', { property: 'og:image' }, ogImage);
+  if (ogImage) {
+    upsertMeta('meta[property="og:image"]', { property: 'og:image' }, ogImage);
+    upsertMeta('meta[name="twitter:image"]', { name: 'twitter:image' }, ogImage);
+  } else {
+    document.head.querySelector('meta[property="og:image"]')?.remove();
+    document.head.querySelector('meta[name="twitter:image"]')?.remove();
+  }
   if (canonicalUrl) {
     upsertMeta('meta[property="og:url"]', { property: 'og:url' }, canonicalUrl);
   } else {
@@ -489,9 +501,8 @@ export function syncPageSeo(ctx: SeoContext) {
   }
   upsertMeta('meta[name="twitter:title"]', { name: 'twitter:title' }, title);
   upsertMeta('meta[name="twitter:description"]', { name: 'twitter:description' }, description);
-  upsertMeta('meta[name="twitter:image"]', { name: 'twitter:image' }, ogImage);
 
   setCanonicalTag(canonicalUrl);
-  syncHreflangTags(activeView, activeSlug, availableLanguages, article);
-  setStructuredData(structuredData);
+  syncHreflangTags(activeView, activeSlug, isDraftArticle ? [] : availableLanguages, article);
+  setStructuredData(isDraftArticle ? null : structuredData);
 }

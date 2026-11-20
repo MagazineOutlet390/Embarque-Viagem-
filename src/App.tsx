@@ -341,7 +341,8 @@ export default function App() {
             relatedArticles={articles.filter(
               (a) =>
                 a.destinationSlug === selectedDestination.slug &&
-                a.editorialStatus !== 'legacy_review'
+                a.editorialStatus !== 'legacy_review' &&
+                a.editorialStatus !== 'draft'
             )}
             offers={offers}
             onBack={() => handleNavigate('destinations')}
@@ -373,7 +374,8 @@ export default function App() {
             relatedArticles={articles.filter(
               (a) =>
                 a.id !== selectedArticle.id &&
-                a.editorialStatus !== 'legacy_review'
+                a.editorialStatus !== 'legacy_review' &&
+                a.editorialStatus !== 'draft'
             )}
             offers={offers}
             onBack={() => handleNavigate('articles')}

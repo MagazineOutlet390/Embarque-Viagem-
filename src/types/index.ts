@@ -55,6 +55,7 @@ export interface ArticleImage {
   caption: string;
   altByLang?: Partial<Record<Language, string>>;
   captionByLang?: Partial<Record<Language, string>>;
+  orientation?: 'landscape' | 'portrait';
   isIllustration?: boolean;
 }
 
@@ -105,7 +106,7 @@ export interface Article {
   id: string;
   slug: string;
   slugs?: Partial<Record<Language, string>>;
-  editorialStatus?: 'verified' | 'legacy_review';
+  editorialStatus?: 'verified' | 'draft' | 'legacy_review';
   showNewsletterInvite?: boolean;
   title: Record<Language, string>;
   subtitle: Record<Language, string>;

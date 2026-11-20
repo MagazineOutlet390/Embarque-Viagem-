@@ -20,6 +20,7 @@ import {
 import { Article, Destination, Language, PartnerOffer } from '../../types';
 import { translations } from '../../i18n/translations';
 import { getArticleSlugForLang, getPathForRoute } from '../../lib/seo';
+import { ArticleToc, TocItem } from './ArticleToc';
 
 interface ArticleDetailProps {
   article: Article;
@@ -206,6 +207,21 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
     ? getPathForRoute('destination', destination.slug, currentLang)
     : '#';
 
+  const tocItems: TocItem[] = [];
+  article.sections.slice(1).forEach((sec, sIdx) => {
+    const targetId = sec.id || `secao-${sIdx + 1}`;
+    const label = sec.title[currentLang] || sec.title.pt;
+    if (label) {
+      tocItems.push({ id: targetId, label });
+    }
+  });
+  if (article.videoEmbed) {
+    tocItems.push({ id: 'video-oficial', label: ui.officialVideoHeading });
+  }
+  if (faqs.length > 0) {
+    tocItems.push({ id: 'perguntas-frequentes', label: ui.faqHeading });
+  }
+
   const handleAuthorClick = (e: React.MouseEvent) => {
     if (!authorSlug) return;
     e.preventDefault();
@@ -254,6 +270,15 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
           <ArrowLeft className="w-3.5 h-3.5 text-[#B8923B]" />
           <span>{ui.backToArticles}</span>
         </button>
+
+        {article.editorialStatus === 'draft' && (
+          <div
+            role="status"
+            className="mb-6 px-4 py-2.5 rounded-lg bg-[#F5F0E8] border border-[#B8923B]/40 text-xs font-medium text-[#16283F]"
+          >
+            {ui.draftBadge}
+          </div>
+        )}
 
         {/* Metadata kicker */}
         <div className="flex flex-wrap items-center gap-2 text-xs text-[#1C2230]/60 mb-4">
@@ -360,33 +385,45 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
         </div>
       </div>
 
-      {/* Hero Visual Image (Eager + High Priority for LCP) */}
-      <figure className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
-        <div className="aspect-16/9 rounded-xl overflow-hidden shadow-sm border border-[#1C2230]/10 bg-neutral-100">
-          <img
-            src={article.coverImage}
-            alt={coverAlt}
-            loading="eager"
-            fetchPriority="high"
-            className="w-full h-full object-cover"
-            onError={(e) => {
-              const el = e.currentTarget;
-              if (!el.src.endsWith('/images/hero_coast.jpg')) {
-                el.src = '/images/hero_coast.jpg';
-              }
-            }}
-          />
+      {/* Hero Visual Image (only rendered when coverImage is defined; empty preparation slot has zero images) */}
+      {article.coverImage ? (
+        <figure className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
+          <div className="aspect-16/9 rounded-xl overflow-hidden shadow-sm border border-[#1C2230]/10 bg-neutral-100">
+            <img
+              src={article.coverImage}
+              alt={coverAlt}
+              loading="eager"
+              fetchPriority="high"
+              className="w-full h-full object-cover"
+              onError={(e) => {
+                const el = e.currentTarget;
+                if (!el.src.endsWith('/images/hero_coast.jpg')) {
+                  el.src = '/images/hero_coast.jpg';
+                }
+              }}
+            />
+          </div>
+          {coverCaption && (
+            <figcaption className="mt-2.5 text-xs text-[#1C2230]/60 leading-relaxed">
+              {coverCaption}
+            </figcaption>
+          )}
+        </figure>
+      ) : (
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
+          <div className="rounded-xl border border-dashed border-[#1C2230]/20 bg-[#F5F0E8]/60 px-6 py-10 text-center">
+            <p className="text-xs uppercase tracking-widest font-semibold text-[#B8923B] mb-1">
+              {ui.coverPlaceholderTitle}
+            </p>
+            <p className="text-xs text-[#1C2230]/65">{ui.coverPlaceholderDesc}</p>
+          </div>
         </div>
-        {coverCaption && (
-          <figcaption className="mt-2.5 text-xs text-[#1C2230]/60 leading-relaxed">
-            {coverCaption}
-          </figcaption>
-        )}
-      </figure>
+      )}
 
       {/* Reading Column (Strict 65-75ch measure for editorial comfort) */}
       <div className="max-w-2xl mx-auto px-4 sm:px-6 text-[#1C2230]/90 leading-relaxed space-y-10">
         {article.sections.map((section, idx) => {
+          const sectionId = section.id || (idx > 0 ? `secao-${idx}` : 'introducao');
           const sectionTitle = section.title[currentLang] || section.title.pt;
           const paragraphs = section.content[currentLang] || section.content.pt || [];
           const subsections = section.subsections?.[currentLang] || [];
@@ -396,10 +433,11 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
             section.image?.captionByLang?.[currentLang] || section.image?.caption || '';
 
           return (
-            <section key={section.id || idx} id={section.id} className="space-y-5">
-              <h2 className="font-editorial text-2xl sm:text-3xl text-[#16283F] pt-4 leading-snug">
-                {sectionTitle}
-              </h2>
+            <React.Fragment key={sectionId || idx}>
+              <section id={sectionId} className="space-y-5 scroll-mt-24">
+                <h2 className="font-editorial text-2xl sm:text-3xl text-[#16283F] pt-4 leading-snug">
+                  {sectionTitle}
+                </h2>
 
               {paragraphs.map((paragraph, pIdx) => (
                 <p
@@ -474,29 +512,56 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
                 </div>
               )}
 
-              {/* Optional Inline Image / Editorial Illustration */}
+              {/* Optional Inline Photograph */}
               {section.image && (
-                <figure className="my-6">
-                  <div className="aspect-16/9 rounded-xl overflow-hidden border border-[#1C2230]/10 bg-neutral-100 shadow-xs">
+                <figure
+                  className={
+                    section.image.orientation === 'portrait'
+                      ? 'my-8 max-w-sm mx-auto'
+                      : 'my-6'
+                  }
+                >
+                  <div
+                    className={`${
+                      section.image.orientation ? '' : 'aspect-16/9 '
+                    }rounded-xl overflow-hidden border border-[#1C2230]/10 bg-neutral-100 shadow-xs`}
+                  >
                     <img
                       src={section.image.src}
                       alt={inlineAlt}
                       loading="lazy"
-                      className="w-full h-full object-cover"
+                      className={
+                        section.image.orientation
+                          ? 'w-full h-auto block'
+                          : 'w-full h-full object-cover'
+                      }
                     />
                   </div>
-                  <figcaption className="mt-2.5 text-xs text-[#1C2230]/65 leading-relaxed">
-                    {inlineCaption}
-                  </figcaption>
+                  {inlineCaption && (
+                    <figcaption className="mt-2.5 text-xs text-[#1C2230]/65 leading-relaxed">
+                      {inlineCaption}
+                    </figcaption>
+                  )}
                 </figure>
               )}
             </section>
+
+              {idx === 0 && article.sections.length > 2 && (
+                <ArticleToc
+                  title={ui.tocTitle}
+                  items={tocItems}
+                  sectionsUnit={ui.tocSectionsUnit}
+                  expandLabel={ui.tocExpand}
+                  collapseLabel={ui.tocCollapse}
+                />
+              )}
+            </React.Fragment>
           );
         })}
 
         {/* Verified Official Video Embed */}
         {article.videoEmbed && (
-          <section className="pt-4 space-y-4">
+          <section id="video-oficial" className="pt-4 space-y-4 scroll-mt-24">
             <div className="flex items-center gap-2 text-xs uppercase tracking-widest text-[#B8923B] font-semibold">
               <PlayCircle className="w-4 h-4" />
               <span>{ui.officialVideoKicker}</span>
@@ -537,7 +602,7 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
 
         {/* Frequently Asked Questions */}
         {faqs.length > 0 && (
-          <section className="pt-6 space-y-5 border-t border-[#1C2230]/10">
+          <section id="perguntas-frequentes" className="pt-6 space-y-5 border-t border-[#1C2230]/10 scroll-mt-24">
             <div>
               <span className="text-xs uppercase tracking-widest text-[#B8923B] font-semibold block mb-1">
                 {ui.faqKicker}
@@ -575,7 +640,15 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {article.relatedInternalLinks.map((link, lIdx) => {
-                const localizedPath = getPathForRoute(link.view, link.slug, currentLang);
+                const matchedArticle =
+                  link.view === 'article' && link.slug
+                    ? relatedArticles.find(
+                        (a) =>
+                          a.slug === link.slug ||
+                          (a.slugs ? Object.values(a.slugs).includes(link.slug!) : false)
+                      )
+                    : undefined;
+                const localizedPath = getPathForRoute(link.view, link.slug, currentLang, matchedArticle);
                 const linkLabel = link.labelByLang?.[currentLang] || link.label;
                 const linkDesc = link.descriptionByLang?.[currentLang] || link.description;
                 return (
@@ -786,20 +859,22 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
                   }}
                   className="bg-white rounded-xl overflow-hidden border border-[#1C2230]/10 hover:border-[#B8923B]/60 transition-all group shadow-xs block"
                 >
-                  <div className="aspect-16/10 overflow-hidden bg-neutral-100">
-                    <img
-                      src={art.coverImage}
-                      alt={relTitle}
-                      loading="lazy"
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      onError={(e) => {
-                        const el = e.currentTarget;
-                        if (!el.src.endsWith('/images/hero_coast.jpg')) {
-                          el.src = '/images/hero_coast.jpg';
-                        }
-                      }}
-                    />
-                  </div>
+                  {art.coverImage && (
+                    <div className="aspect-16/10 overflow-hidden bg-neutral-100">
+                      <img
+                        src={art.coverImage}
+                        alt={relTitle}
+                        loading="lazy"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        onError={(e) => {
+                          const el = e.currentTarget;
+                          if (!el.src.endsWith('/images/hero_coast.jpg')) {
+                            el.src = '/images/hero_coast.jpg';
+                          }
+                        }}
+                      />
+                    </div>
+                  )}
                   <div className="p-5">
                     <div className="text-[10px] uppercase tracking-wider text-[#B8923B] font-semibold mb-1">
                       {art.category} · {art.readTimeMinutes} min

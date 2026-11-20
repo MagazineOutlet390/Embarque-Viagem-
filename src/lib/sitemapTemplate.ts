@@ -67,9 +67,12 @@ export function buildSitemapXml(): string | null {
     });
   });
 
-  // Artigos publicados (exclui rascunhos marcados como legacy_review e emite apenas idiomas disponíveis)
+  // Artigos publicados (exclui rascunhos em preparação e legacy_review; emite apenas idiomas disponíveis)
   articlesData
-    .filter((article) => article.editorialStatus !== 'legacy_review')
+    .filter(
+      (article) =>
+        article.editorialStatus !== 'legacy_review' && article.editorialStatus !== 'draft'
+    )
     .forEach((article) => {
       const langs = article.availableLanguages?.length ? article.availableLanguages : (['pt'] as Language[]);
       const alternates: SitemapAlternate[] = langs.map((lang) => ({

@@ -24,10 +24,11 @@ export const EditorialArticles: React.FC<EditorialArticlesProps> = ({
 }) => {
   const t = translations[currentLang];
 
-  if (!articles || articles.length === 0) return null;
+  const visibleArticles = (articles || []).filter((a) => a.editorialStatus !== 'draft');
+  if (visibleArticles.length === 0) return null;
 
-  const leadArticle = articles[0];
-  const secondaryArticles = showAll ? articles.slice(1) : articles.slice(1, 4);
+  const leadArticle = visibleArticles[0];
+  const secondaryArticles = showAll ? visibleArticles.slice(1) : visibleArticles.slice(1, 4);
 
   const leadSlug = getArticleSlugForLang(leadArticle, currentLang);
   const leadHref = getPathForRoute('article', leadSlug, currentLang, leadArticle);

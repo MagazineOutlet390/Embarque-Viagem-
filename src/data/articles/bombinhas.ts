@@ -123,21 +123,21 @@ export const oQueFazerEmBombinhasArticle: Article = {
         en: 'Best beaches in Bombinhas: a breakdown by water profile',
       },
       image: {
-        src: '/images/blog/ilustracao-praias-peninsula-bombinhas.webp',
-        alt: 'Ilustração editorial em aquarela e nanquim comparando uma enseada calma cercada por costões e uma praia oceânica com ondas na península',
+        src: '/assets/aistudio/pexels-vinegarcias-10194312_7d7bf23d.jpg',
+        orientation: 'portrait',
+        alt: 'Faixa de areia molhada com espuma branca de ondas avançando sobre a praia, tendo ao fundo um morro verde com costão rochoso sob céu nublado',
         caption:
-          'Ilustração editorial conceitual — Embarque: contraste entre as enseadas abrigadas e as praias de mar aberto da península.',
+          'Ondas na faixa de areia e costão coberto por vegetação nativa na península de Bombinhas — fotografia de Vine Garcias / Pexels.',
         altByLang: {
-          pt: 'Ilustração editorial em aquarela e nanquim comparando uma enseada calma cercada por costões e uma praia oceânica com ondas na península',
-          es: 'Ilustración editorial en acuarela y tinta que contrasta una cala tranquila entre roquedales con una playa oceánica de oleaje abierto en la península',
-          en: 'Editorial watercolor and ink illustration contrasting a sheltered rocky cove with an open-ocean surf beach along the peninsula',
+          pt: 'Faixa de areia molhada com espuma branca de ondas avançando sobre a praia, tendo ao fundo um morro verde com costão rochoso sob céu nublado',
+          es: 'Franja de arena húmeda con espuma blanca de olas rompiendo en la orilla y un morro verde con roquedales al fondo bajo cielo nublado',
+          en: 'Wet golden sand with white surf washing ashore toward a green coastal headland and rocky outcrops beneath an overcast sky',
         },
         captionByLang: {
-          pt: 'Ilustração editorial conceitual — Embarque: contraste entre as enseadas abrigadas e as praias de mar aberto da península.',
-          es: 'Ilustración editorial conceptual — Embarque: contraste entre las ensenadas resguardadas y las playas de mar abierto de la península.',
-          en: 'Conceptual editorial illustration — Embarque: contrast between Bombinhas’s sheltered coves and open-Atlantic beaches.',
+          pt: 'Ondas na faixa de areia e costão coberto por vegetação nativa na península de Bombinhas — fotografia de Vine Garcias / Pexels.',
+          es: 'Olas en la orilla y promontorio cubierto de vegetación nativa en la península — fotografía de Vine Garcias / Pexels.',
+          en: 'Atlantic surf meeting a vegetated rocky headland along the peninsula — photo by Vine Garcias / Pexels.',
         },
-        isIllustration: true,
       },
       content: {
         pt: [
@@ -317,21 +317,21 @@ export const oQueFazerEmBombinhasArticle: Article = {
         en: 'Ecological diving and the Arvoredo Marine Biological Reserve',
       },
       image: {
-        src: '/images/blog/ilustracao-mergulho-ecologico-bombinhas.webp',
-        alt: 'Ilustração editorial subaquática retratando tartaruga marinha verde e peixes recifais em águas claras de tonalidade esmeralda',
+        src: '/assets/aistudio/pexels-oigoralvez-18184181_701f2e9b.jpg',
+        orientation: 'portrait',
+        alt: 'Rochas costeiras e pequenas poças de água clara em primeiro plano junto ao mar azul-esverdeado, com vegetação à direita e duas embarcações ao longe no horizonte',
         caption:
-          'Ilustração editorial conceitual — Embarque: biodiversidade marinha encontrada nos costões da Costa Esmeralda.',
+          'Costões rochosos, águas transparentes e embarcações ao largo na região de Bombinhas — fotografia de Igor Alvez / Pexels.',
         altByLang: {
-          pt: 'Ilustração editorial subaquática retratando tartaruga marinha verde e peixes recifais em águas claras de tonalidade esmeralda',
-          es: 'Ilustración editorial submarina con una tortuga marina verde y peces de arrecife en aguas claras color esmeralda',
-          en: 'Editorial underwater illustration featuring a green sea turtle and reef fish gliding through clear emerald waters',
+          pt: 'Rochas costeiras e pequenas poças de água clara em primeiro plano junto ao mar azul-esverdeado, com vegetação à direita e duas embarcações ao longe no horizonte',
+          es: 'Rocas costeras y pequeñas pozas de agua clara en primer plano junto al mar azul verdoso, con vegetación a la derecha y embarcaciones a lo lejos',
+          en: 'Granite coastal rocks and clear shallow tide pools beside calm blue-green sea, framed by coastal shrubs and distant boats on the horizon',
         },
         captionByLang: {
-          pt: 'Ilustração editorial conceitual — Embarque: biodiversidade marinha encontrada nos costões da Costa Esmeralda.',
-          es: 'Ilustración editorial conceptual — Embarque: biodiversidad marina presente en los costones de la Costa Esmeralda.',
-          en: 'Conceptual editorial illustration — Embarque: coastal marine biodiversity around Brazil’s Costa Esmeralda.',
+          pt: 'Costões rochosos, águas transparentes e embarcações ao largo na região de Bombinhas — fotografia de Igor Alvez / Pexels.',
+          es: 'Roquedales costeros, aguas claras y embarcaciones mar adentro — fotografía de Igor Alvez / Pexels.',
+          en: 'Rocky shoreline, clear coastal waters, and offshore boats — photo by Igor Alvez / Pexels.',
         },
-        isIllustration: true,
       },
       content: {
         pt: [
@@ -359,21 +359,21 @@ export const oQueFazerEmBombinhasArticle: Article = {
         en: 'Panoramic trails, viewpoints, and local fishing heritage',
       },
       image: {
-        src: '/images/blog/ilustracao-trilhas-mirante-bombinhas.webp',
-        alt: 'Ilustração editorial de trilha sombreada por Mata Atlântica abrindo vista panorâmica sobre duas baías de águas claras no litoral catarinense',
+        src: '/assets/aistudio/pexels-mauricio-rodrigues-222330773-11948472_a214abbc.jpg',
+        orientation: 'landscape',
+        alt: 'Vista panorâmica a partir de área elevada com folhagens em primeiro plano, revelando uma enseada de areia curva, casario costeiro, morro arborizado avançando sobre o mar azul e uma ilha distante no horizonte',
         caption:
-          'Ilustração editorial conceitual — Embarque: trilhas entre trechos de Mata Atlântica conectam mirantes naturais sobre a península.',
+          'Mirante elevado com vista ampla sobre enseada, península arborizada e ilha costeira no horizonte — fotografia de Maurício Rodrigues / Pexels.',
         altByLang: {
-          pt: 'Ilustração editorial de trilha sombreada por Mata Atlântica abrindo vista panorâmica sobre duas baías de águas claras no litoral catarinense',
-          es: 'Ilustración editorial de un sendero sombreado por Mata Atlántica que se abre hacia una vista panorámica de dos bahías en Santa Catarina',
-          en: 'Editorial illustration of an Atlantic rainforest trail opening onto panoramic views across two clear coastal bays in Santa Catarina',
+          pt: 'Vista panorâmica a partir de área elevada com folhagens em primeiro plano, revelando uma enseada de areia curva, casario costeiro, morro arborizado avançando sobre o mar azul e uma ilha distante no horizonte',
+          es: 'Vista panorámica desde un punto elevado entre follaje verde hacia una bahía curva de arena, casas costeras, un promontorio arbolado sobre el mar azul y una isla en el horizonte',
+          en: 'Elevated panoramic view framed by coastal foliage overlooking a curved sandy bay, neighborhood roofs, a forested headland jutting into blue sea, and a distant offshore island',
         },
         captionByLang: {
-          pt: 'Ilustração editorial conceitual — Embarque: trilhas entre trechos de Mata Atlântica conectam mirantes naturais sobre a península.',
-          es: 'Ilustración editorial conceptual — Embarque: senderos entre la Mata Atlántica conectan miradores naturales sobre la península.',
-          en: 'Conceptual editorial illustration — Embarque: rainforest trails link natural viewpoints overlooking the peninsula.',
+          pt: 'Mirante elevado com vista ampla sobre enseada, península arborizada e ilha costeira no horizonte — fotografia de Maurício Rodrigues / Pexels.',
+          es: 'Mirador elevado con vista amplia sobre ensenada, península arbolada e isla costera en el horizonte — fotografía de Maurício Rodrigues / Pexels.',
+          en: 'Hilltop overlook above a sheltered cove, forested headland, and distant island — photo by Maurício Rodrigues / Pexels.',
         },
-        isIllustration: true,
       },
       content: {
         pt: [
@@ -540,6 +540,23 @@ export const oQueFazerEmBombinhasArticle: Article = {
         es: 'Cuándo ir a Bombinhas: clima, ocupación y temporadas',
         en: 'When to visit Bombinhas: weather, crowds, and seasonal rates',
       },
+      image: {
+        src: '/assets/aistudio/pexels-aleson-padilha-945919991-30723146_7158edf2.jpg',
+        orientation: 'portrait',
+        alt: 'Proa de um barco de pesca branco e azul com corrimão amarelo e pneus pretos usados como defensas laterais, flutuando junto a um píer de madeira sobre águas calmas com outros barcos ancorados ao fundo',
+        caption:
+          'Embarcação pesqueira tradicional atracada em águas abrigadas na costa catarinense — fotografia de Aleson Padilha / Pexels.',
+        altByLang: {
+          pt: 'Proa de um barco de pesca branco e azul com corrimão amarelo e pneus pretos usados como defensas laterais, flutuando junto a um píer de madeira sobre águas calmas com outros barcos ancorados ao fundo',
+          es: 'Proa de una embarcación pesquera blanca y azul con baranda amarilla y neumáticos como defensas laterales, junto a un muelle de madera y otros barcos fondeados al fondo',
+          en: 'Bow of a white-and-blue wooden fishing boat with yellow railing and black tire fenders moored beside a wooden pier on calm coastal water with anchored boats behind',
+        },
+        captionByLang: {
+          pt: 'Embarcação pesqueira tradicional atracada em águas abrigadas na costa catarinense — fotografia de Aleson Padilha / Pexels.',
+          es: 'Embarcación pesquera tradicional amarrada en aguas tranquilas — fotografía de Aleson Padilha / Pexels.',
+          en: 'Traditional wooden fishing boat moored in sheltered coastal waters — photo by Aleson Padilha / Pexels.',
+        },
+      },
       content: {
         pt: [
           'A melhor época para viajar a Bombinhas depende do equilíbrio que você procura entre temperatura da água, movimento nas ruas e tarifas de hospedagem.',
@@ -564,23 +581,6 @@ export const oQueFazerEmBombinhasArticle: Article = {
         pt: 'Como chegar a Bombinhas e dicas para circular sem estresse',
         es: 'Cómo llegar a Bombinhas y consejos para moverte sin contratiempos',
         en: 'How to get to Bombinhas and tips for getting around',
-      },
-      image: {
-        src: '/images/blog/ilustracao-chegada-planejamento-bombinhas.webp',
-        alt: 'Ilustração editorial de estrada costeira descendo entre morros verdes até uma baía tranquila com barcos de pesca no litoral sul brasileiro',
-        caption:
-          'Ilustração editorial conceitual — Embarque: o acesso rodoviário contorna os morros entre Porto Belo e a entrada da península.',
-        altByLang: {
-          pt: 'Ilustração editorial de estrada costeira descendo entre morros verdes até uma baía tranquila com barcos de pesca no litoral sul brasileiro',
-          es: 'Ilustración editorial de una carretera costera descendiendo entre cerros verdes hacia una bahía tranquila con barcas pesqueras en el sur de Brasil',
-          en: 'Editorial illustration of a coastal road winding down green hills toward a quiet fishing bay in southern Brazil',
-        },
-        captionByLang: {
-          pt: 'Ilustração editorial conceitual — Embarque: o acesso rodoviário contorna os morros entre Porto Belo e a entrada da península.',
-          es: 'Ilustración editorial conceptual — Embarque: el acceso vial bordea los cerros entre Porto Belo y la entrada de la península.',
-          en: 'Conceptual editorial illustration — Embarque: the highway approach winds through green hills between Porto Belo and Bombinhas.',
-        },
-        isIllustration: true,
       },
       content: {
         pt: [
@@ -697,6 +697,23 @@ export const oQueFazerEmBombinhasArticle: Article = {
         pt: 'Onde ficar em Bombinhas: escolha o bairro pelo estilo da viagem',
         es: 'Dónde alojarse en Bombinhas: elige el barrio según tu estilo de viaje',
         en: 'Where to stay in Bombinhas: choosing a neighborhood by travel style',
+      },
+      image: {
+        src: '/assets/aistudio/pexels-aleson-padilha-945919991-34054817_f012b883.jpg',
+        orientation: 'landscape',
+        alt: 'Vista aérea de uma baía tranquila de águas claras em tons azul-esverdeados com pequenas embarcações ancoradas, rochas com um caiaque apoiado em primeiro plano e bairro arborizado estendendo-se ao pé de morros verdes',
+        caption:
+          'Vista aérea de enseada abrigada com embarcações ancoradas e bairro litorâneo cercado por morros — fotografia de Aleson Padilha / Pexels.',
+        altByLang: {
+          pt: 'Vista aérea de uma baía tranquila de águas claras em tons azul-esverdeados com pequenas embarcações ancoradas, rochas com um caiaque apoiado em primeiro plano e bairro arborizado estendendo-se ao pé de morros verdes',
+          es: 'Vista aérea de una bahía serena de aguas claras verdosas y azules con pequeñas embarcaciones fondeadas, rocas con un kayak en primer plano y un barrio arbolado al pie de cerros verdes',
+          en: 'Aerial view of a calm turquoise-and-olive sheltered bay dotted with small anchored boats, foreground rocks with a white kayak, and a tree-lined coastal neighborhood below green hills',
+        },
+        captionByLang: {
+          pt: 'Vista aérea de enseada abrigada com embarcações ancoradas e bairro litorâneo cercado por morros — fotografia de Aleson Padilha / Pexels.',
+          es: 'Vista aérea de bahía resguardada con embarcaciones fondeadas y barrio costero rodeado de morros — fotografía de Aleson Padilha / Pexels.',
+          en: 'Aerial perspective of a sheltered bay, anchored boats, and tree-lined waterfront neighborhood — photo by Aleson Padilha / Pexels.',
+        },
       },
       content: {
         pt: [

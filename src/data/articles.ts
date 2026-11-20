@@ -5,9 +5,15 @@
 
 import { Article } from '../types';
 import { oQueFazerEmBombinhasArticle } from './articles/bombinhas';
+import { oQueFazerEmFlorianopolisArticle } from './articles/florianopolis';
+import { oQueFazerEmBalnearioCamboriuArticle } from './articles/balnearioCamboriu';
+import { oQueFazerEmItapemaArticle } from './articles/itapema';
 
 export const articlesData: Article[] = [
   oQueFazerEmBombinhasArticle,
+  oQueFazerEmFlorianopolisArticle,
+  oQueFazerEmBalnearioCamboriuArticle,
+  oQueFazerEmItapemaArticle,
   {
     id: 'bombinhas-enseadas-secretas',
     slug: 'bombinhas-alem-do-obvio-enseadas-secretas',

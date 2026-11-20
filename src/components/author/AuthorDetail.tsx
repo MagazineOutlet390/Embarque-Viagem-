@@ -32,7 +32,8 @@ export const AuthorDetail: React.FC<AuthorDetailProps> = ({
   const authoredArticles = articles.filter(
     (art) =>
       (art.author.id === author.id || art.reviewer?.id === author.id) &&
-      art.editorialStatus !== 'legacy_review'
+      art.editorialStatus !== 'legacy_review' &&
+      art.editorialStatus !== 'draft'
   );
 
   const hasSocialLinks = Boolean(author.socialLinks?.linkedin || author.socialLinks?.instagram);
