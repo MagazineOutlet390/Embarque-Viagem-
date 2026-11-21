@@ -178,8 +178,6 @@ async function startServer() {
       service: 'Embarque Editorial API',
       timestamp: new Date().toISOString(),
       hasBrevoKey: !!process.env.BREVO_API_KEY,
-      sanityProjectId: process.env.VITE_SANITY_PROJECT_ID || process.env.SANITY_PROJECT_ID || null,
-      sanityDataset: process.env.VITE_SANITY_DATASET || process.env.SANITY_DATASET || null,
     });
   });
 

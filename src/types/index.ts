@@ -70,10 +70,24 @@ export interface ArticleSubsection {
   paragraphs: string[];
 }
 
+export interface SectionVideoEmbed {
+  youtubeId: string;
+  title: string;
+  titleByLang?: Partial<Record<Language, string>>;
+  authorName?: string;
+  channelName: string;
+  channelUrl: string;
+  watchUrl: string;
+  caption: string;
+  captionByLang?: Partial<Record<Language, string>>;
+  creditLabel?: Partial<Record<Language, string>>;
+}
+
 export interface ArticleSection {
   id?: string;
   title: Record<Language, string>;
   content: Record<Language, string[]>;
+  videoEmbed?: SectionVideoEmbed;
   subsections?: Record<Language, ArticleSubsection[]>;
   image?: ArticleImage;
   table?: Record<Language, ArticleTable>;

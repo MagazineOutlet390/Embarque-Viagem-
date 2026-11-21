@@ -14,15 +14,24 @@ export const oQueFazerEmItapemaArticle: Article = {
     es: 'que-hacer-en-itapema',
     en: 'things-to-do-in-itapema',
   },
-  // Mantido estritamente em modo de preparação (não publicado e não indexável até revisão final e inserção de imagens)
-  editorialStatus: 'draft',
+  // Publicado no catálogo editorial ativo com fotografias reais otimizadas em WebP
+  editorialStatus: 'verified',
   showNewsletterInvite: true,
   category: 'guias',
-  // Sem fotografia inserida nesta etapa de preparação (espaço reservado aguardando envio editorial)
-  coverImage: '',
+  coverImage: '/images/blog/o-que-fazer-em-itapema-capa.webp',
+  coverImageAlt: {
+    pt: 'Vista aérea ao entardecer de Itapema (SC) mostrando os prédios ao longo da orla, a rodovia BR-101 cortando a área urbana, a enseada tranquila e os morros costeiros ao fundo sob céu dourado',
+    es: 'Vista aérea al atardecer de Itapema (SC) con los edificios costeros, la autopista BR-101 atravesando la ciudad, la bahía en calma y los cerros litorales al fondo bajo cielo dorado',
+    en: 'Aerial twilight panorama of Itapema (Santa Catarina) showing high-rise towers along the bayfront, highway BR-101 cutting through town, calm coastal water, and mountains under a golden horizon',
+  },
+  coverImageCaption: {
+    pt: 'Panorama aéreo da orla urbana de Itapema, da baía e do eixo da BR-101 ao entardecer — Acervo Pexels (ID 33613299).',
+    es: 'Panorámica aérea de la costa urbana de Itapema, la bahía y el corredor de la BR-101 al caer la tarde — Colección Pexels (ID 33613299).',
+    en: 'Aerial dusk view over Itapema’s coastal skyline, bayfront, and BR-101 corridor — Pexels Archive (ID 33613299).',
+  },
   featured: false,
-  publishedAt: '2026-11-20',
-  updatedAt: '2026-11-20',
+  publishedAt: '2026-11-21',
+  updatedAt: '2026-11-21',
   readTimeMinutes: 16,
   destinationSlug: 'itapema',
   availableLanguages: ['pt', 'es', 'en'],
@@ -165,7 +174,22 @@ export const oQueFazerEmItapemaArticle: Article = {
         es: 'Mejores playas de Itapema: desde bahías urbanas calmas hasta calas vírgenes',
         en: 'Best beaches in Itapema: from calm urban bays to wild forest coves',
       },
-      // Espaço reservado para fotografia interna 1: Orla / Meia Praia ou Canto da Praia (a ser inserida após envio editorial)
+      image: {
+        src: '/images/blog/itapema-praia-nascer-do-sol-orla.webp',
+        orientation: 'landscape',
+        alt: 'Faixa de areia ampla na orla de Itapema ao nascer do sol com ondas suaves, silhueta de caminhante à beira-mar, morros no horizonte e edifícios costeiros ao fundo',
+        caption: 'Amanhecer dourado na orla da baía de Itapema com mar ameno e faixa de areia aberta — fotografia de Leandro Bezerra / Pexels (ID 19611076).',
+        altByLang: {
+          pt: 'Faixa de areia ampla na orla de Itapema ao nascer do sol com ondas suaves, silhueta de caminhante à beira-mar, morros no horizonte e edifícios costeiros ao fundo',
+          es: 'Amplia franja de arena en la costa de Itapema al amanecer con olas suaves, silueta de caminante junto al mar, morros en el horizonte y edificios costeros al fondo',
+          en: 'Wide sandy shoreline in Itapema at sunrise with gentle surf, a walker’s silhouette along the water, coastal hills across the bay, and beachfront buildings in the distance',
+        },
+        captionByLang: {
+          pt: 'Amanhecer dourado na orla da baía de Itapema com mar ameno e faixa de areia aberta — fotografia de Leandro Bezerra / Pexels (ID 19611076).',
+          es: 'Amanecer dorado en la bahía de Itapema con oleaje calmo y arena despejada — fotografía de Leandro Bezerra / Pexels (ID 19611076).',
+          en: 'Golden sunrise along Itapema bay with mild morning waves and open beach sand — photo by Leandro Bezerra / Pexels (ID 19611076).',
+        },
+      },
       content: {
         pt: [
           'As praias de Itapema oferecem perfis bem distintos ao longo de poucos quilômetros. Entender o comportamento do mar e a infraestrutura de cada trecho ajuda a evitar escolhas erradas — sobretudo para quem viaja com crianças ou procura sossego fora do eixo comercial.',
@@ -327,7 +351,22 @@ export const oQueFazerEmItapemaArticle: Article = {
         es: 'Puntos turísticos de Itapema: qué visitar y estado actualizado en 2026',
         en: 'Top sights in Itapema: landmarks & current 2026 visitor status',
       },
-      // Espaço reservado para fotografia interna 2: Píer OPorto, Ponte dos Suspiros ou Parque das Capivaras (a ser inserida após envio editorial)
+      image: {
+        src: '/images/blog/itapema-molhes-calcadao-ciclovia-orla.webp',
+        orientation: 'portrait',
+        alt: 'Calçadão e ciclovia vermelha à beira-mar em Itapema ao amanhecer, com faixa de areia e dois molhes paralelos de pedras avançando sobre a água sob céu dourado',
+        caption: 'Calçadão, ciclovia da orla e molhes costeiros em Itapema ao nascer do sol — Acervo Pexels (ID 32864744).',
+        altByLang: {
+          pt: 'Calçadão e ciclovia vermelha à beira-mar em Itapema ao amanhecer, com faixa de areia e dois molhes paralelos de pedras avançando sobre a água sob céu dourado',
+          es: 'Paseo peatonal y ciclovía roja junto a la playa en Itapema al amanecer, con dos espigones paralelos de piedra avanzando hacia el mar bajo nubes doradas',
+          en: 'Beachfront promenade and red bike path in Itapema at sunrise overlooking the sand and twin stone jetties extending into calm bay water',
+        },
+        captionByLang: {
+          pt: 'Calçadão, ciclovia da orla e molhes costeiros em Itapema ao nascer do sol — Acervo Pexels (ID 32864744).',
+          es: 'Rambla, ciclovía costera y espigones sobre el mar en Itapema al amanecer — Colección Pexels (ID 32864744).',
+          en: 'Boardwalk, coastal bike lane, and stone jetties in Itapema at sunrise — Pexels Archive (ID 32864744).',
+        },
+      },
       content: {
         pt: [
           'Além da faixa de areia, os pontos turísticos de Itapema reúnem um novo complexo sobre o mar inaugurado recentemente, marcos arquitetônicos gratuitos, áreas de conservação ambiental e um vale rural a poucos minutos do centro — além de exigir atenção especial à situação atual do Mirante do Encanto.',
@@ -453,7 +492,22 @@ export const oQueFazerEmItapemaArticle: Article = {
         es: 'Qué hacer en Itapema de noche y en días de lluvia',
         en: 'Things to do in Itapema at night and on rainy days',
       },
-      // Espaço reservado para fotografia interna 3: Entardecer/noite na orla ou Píer OPorto (a ser inserida após envio editorial)
+      image: {
+        src: '/images/blog/itapema-entardecer-br101-cidade-iluminada.webp',
+        orientation: 'landscape',
+        alt: 'Vista elevada noturna de Itapema com prédios iluminados nos dois lados do corredor da rodovia BR-101 ao crepúsculo e silhueta dos morros ao fundo',
+        caption: 'Entardecer iluminado sobre a área urbana de Itapema e o eixo da BR-101 entre os edifícios — Acervo Pexels (ID 33613300).',
+        altByLang: {
+          pt: 'Vista elevada noturna de Itapema com prédios iluminados nos dois lados do corredor da rodovia BR-101 ao crepúsculo e silhueta dos morros ao fundo',
+          es: 'Vista elevada al anochecer en Itapema con edificios iluminados a ambos lados de la autopista BR-101 y las montañas costeras al fondo',
+          en: 'Elevated twilight view of Itapema showing illuminated high-rises flanking the glowing BR-101 highway corridor with coastal mountains behind',
+        },
+        captionByLang: {
+          pt: 'Entardecer iluminado sobre a área urbana de Itapema e o eixo da BR-101 entre os edifícios — Acervo Pexels (ID 33613300).',
+          es: 'Anochecer sobre la zona urbana de Itapema y el corredor iluminado de la BR-101 — Colección Pexels (ID 33613300).',
+          en: 'Evening city lights across Itapema and the BR-101 corridor at dusk — Pexels Archive (ID 33613300).',
+        },
+      },
       content: {
         pt: [
           'Quem procura o que fazer em Itapema à noite encontra uma vida noturna de perfil familiar, gastronômico e caminhável — menos voltada a grandes casas noturnas eletrônicas e mais concentrada em jantares, bares de orla, sorveterias e passeios no calçadão.',

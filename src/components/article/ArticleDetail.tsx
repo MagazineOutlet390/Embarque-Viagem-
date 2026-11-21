@@ -452,6 +452,55 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
                 </p>
               ))}
 
+              {/* Optional Inline Section Video Embed (e.g., Traveler Experience Account) */}
+              {section.videoEmbed && (
+                <div className="my-6 rounded-xl overflow-hidden border border-[#1C2230]/15 bg-white shadow-xs">
+                  <div className="aspect-16/9 bg-[#16283F]">
+                    <iframe
+                      src={`https://www.youtube-nocookie.com/embed/${section.videoEmbed.youtubeId}?rel=0`}
+                      title={
+                        section.videoEmbed.titleByLang?.[currentLang] ||
+                        section.videoEmbed.title
+                      }
+                      loading="lazy"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      className="w-full h-full border-0"
+                    />
+                  </div>
+                  <div className="p-4 sm:p-5 bg-[#FAF8F3] border-t border-[#1C2230]/10 space-y-2.5">
+                    {(section.videoEmbed.creditLabel?.[currentLang] ||
+                      section.videoEmbed.authorName ||
+                      section.videoEmbed.channelName) && (
+                      <div className="flex flex-wrap items-center gap-2 text-xs font-semibold text-[#16283F]">
+                        <PlayCircle className="w-4 h-4 text-[#B8923B] shrink-0" />
+                        <span>
+                          {section.videoEmbed.creditLabel?.[currentLang] ||
+                            `${section.videoEmbed.authorName ? `${section.videoEmbed.authorName} · ` : ''}${section.videoEmbed.channelName}`}
+                        </span>
+                      </div>
+                    )}
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                      <p className="text-xs text-[#1C2230]/75 leading-relaxed">
+                        {section.videoEmbed.captionByLang?.[currentLang] ||
+                          section.videoEmbed.caption}
+                      </p>
+                      <a
+                        href={section.videoEmbed.watchUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 text-xs font-semibold text-[#16283F] hover:text-[#B8923B] transition-colors shrink-0"
+                      >
+                        <span>
+                          {ui.watchOnYoutube} ({section.videoEmbed.channelName})
+                        </span>
+                        <ExternalLink className="w-3 h-3" />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              )}
+
               {/* Optional Subsections (H3) */}
               {subsections.length > 0 && (
                 <div className="space-y-6 pt-2">

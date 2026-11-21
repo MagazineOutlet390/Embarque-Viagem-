@@ -20,12 +20,15 @@ import { AuthorDetail } from './components/author/AuthorDetail';
 import { NewsletterSection } from './components/newsletter/NewsletterSection';
 import { InstitutionalView } from './components/institutional/InstitutionalView';
 
-import { getDestinations, getArticles, getPartners, getOffers } from './lib/sanity';
 import { articlesData } from './data/articles';
 import { destinationsData } from './data/destinations';
 import { AUTHORS_BY_SLUG } from './data/authors';
-import { travellerProfilesData } from './data/partners';
-import { Destination, Article, Language, HeroPhotoConfig } from './types';
+import {
+  affiliatePartnersData,
+  partnerOffersData,
+  travellerProfilesData,
+} from './data/partners';
+import { Language, HeroPhotoConfig } from './types';
 import { translations } from './i18n/translations';
 import {
   findArticleByAnySlug,
@@ -50,11 +53,11 @@ export default function App() {
   const [activeSlug, setActiveSlug] = useState<string>(initialRoute.slug);
   const [searchFilter, setSearchFilter] = useState<string>('');
 
-  // Data states (resilient Sanity client with immediate curated fallback for deep links)
-  const [destinations, setDestinations] = useState<Destination[]>(destinationsData);
-  const [articles, setArticles] = useState<Article[]>(articlesData);
-  const [partners] = useState<import('./types').AffiliatePartner[]>(() => getPartners());
-  const [offers] = useState<import('./types').PartnerOffer[]>(() => getOffers());
+  // Single local editorial source of truth stored directly in the repository
+  const destinations = destinationsData;
+  const articles = articlesData;
+  const partners = affiliatePartnersData;
+  const offers = partnerOffersData;
 
   // Hero photo configuration (internal state preserved for programmatic control)
   const [heroConfig] = useState<HeroPhotoConfig>(() => {
@@ -74,16 +77,6 @@ export default function App() {
     }
     return DEFAULT_HERO_CONFIG;
   });
-
-  // Load Sanity data on mount if published documents exist
-  useEffect(() => {
-    async function loadData() {
-      const [destList, artList] = await Promise.all([getDestinations(), getArticles()]);
-      if (destList.length > 0) setDestinations(destList);
-      if (artList.length > 0) setArticles(artList);
-    }
-    loadData();
-  }, []);
 
   // Sync browser history back/forward navigation (preserving language prefix & localized route)
   useEffect(() => {

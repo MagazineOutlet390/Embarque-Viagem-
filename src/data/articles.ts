@@ -8,12 +8,26 @@ import { oQueFazerEmBombinhasArticle } from './articles/bombinhas';
 import { oQueFazerEmFlorianopolisArticle } from './articles/florianopolis';
 import { oQueFazerEmBalnearioCamboriuArticle } from './articles/balnearioCamboriu';
 import { oQueFazerEmItapemaArticle } from './articles/itapema';
+import { oQueFazerEmGramadoArticle } from './articles/gramado';
+import { comoFuncionaUmCruzeiroArticle } from './articles/cruzeiro';
+import { comoComprarPassagensAereasBaratasArticle } from './articles/passagensAereas';
+import { oQueFazerEmSantiagoArticle } from './articles/santiago';
+import { pacotesDeViagemBaratosArticle } from './articles/pacotesViagem';
+import { oQueFazerEmBuziosArticle } from './articles/buzios';
+import { oQueFazerEmBuenosAiresArticle } from './articles/buenosAires';
 
 export const articlesData: Article[] = [
   oQueFazerEmBombinhasArticle,
   oQueFazerEmFlorianopolisArticle,
   oQueFazerEmBalnearioCamboriuArticle,
   oQueFazerEmItapemaArticle,
+  oQueFazerEmGramadoArticle,
+  comoFuncionaUmCruzeiroArticle,
+  comoComprarPassagensAereasBaratasArticle,
+  oQueFazerEmSantiagoArticle,
+  pacotesDeViagemBaratosArticle,
+  oQueFazerEmBuziosArticle,
+  oQueFazerEmBuenosAiresArticle,
   {
     id: 'bombinhas-enseadas-secretas',
     slug: 'bombinhas-alem-do-obvio-enseadas-secretas',
