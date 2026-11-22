@@ -15,6 +15,7 @@ import { oQueFazerEmSantiagoArticle } from './articles/santiago';
 import { pacotesDeViagemBaratosArticle } from './articles/pacotesViagem';
 import { oQueFazerEmBuziosArticle } from './articles/buzios';
 import { oQueFazerEmBuenosAiresArticle } from './articles/buenosAires';
+import { comoCalcularCustosViagemArticle } from './articles/orcamentoViagem';
 
 export const articlesData: Article[] = [
   oQueFazerEmBombinhasArticle,
@@ -28,6 +29,7 @@ export const articlesData: Article[] = [
   pacotesDeViagemBaratosArticle,
   oQueFazerEmBuziosArticle,
   oQueFazerEmBuenosAiresArticle,
+  comoCalcularCustosViagemArticle,
   {
     id: 'bombinhas-enseadas-secretas',
     slug: 'bombinhas-alem-do-obvio-enseadas-secretas',

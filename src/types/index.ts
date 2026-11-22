@@ -83,12 +83,22 @@ export interface SectionVideoEmbed {
   creditLabel?: Partial<Record<Language, string>>;
 }
 
+export interface ArticleToolCallout {
+  view: 'calculator' | 'route-calculator' | 'comparator';
+  kicker: Record<Language, string>;
+  title: Record<Language, string>;
+  description: Record<Language, string>;
+  ctaLabel: Record<Language, string>;
+}
+
 export interface ArticleSection {
   id?: string;
   title: Record<Language, string>;
   content: Record<Language, string[]>;
   videoEmbed?: SectionVideoEmbed;
   subsections?: Record<Language, ArticleSubsection[]>;
+  toolCallout?: ArticleToolCallout;
+  checklist?: Record<Language, string[]>;
   image?: ArticleImage;
   table?: Record<Language, ArticleTable>;
 }

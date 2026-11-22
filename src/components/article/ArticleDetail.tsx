@@ -16,10 +16,12 @@ import {
   Check,
   AlertCircle,
   Globe,
+  Calculator,
+  Navigation,
 } from 'lucide-react';
 import { Article, Destination, Language, PartnerOffer } from '../../types';
 import { translations } from '../../i18n/translations';
-import { getArticleSlugForLang, getPathForRoute } from '../../lib/seo';
+import { getArticleSlugForLang, getPathForRoute, parseRouteFromPathname } from '../../lib/seo';
 import { ArticleToc, TocItem } from './ArticleToc';
 
 interface ArticleDetailProps {
@@ -228,6 +230,72 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
     onSelectAuthor(authorSlug);
   };
 
+  const renderRichParagraph = (text: string): React.ReactNode => {
+    const linkPattern = /\[([^\]]+)\]\(([^)]+)\)/g;
+    if (!linkPattern.test(text)) {
+      return text;
+    }
+    linkPattern.lastIndex = 0;
+
+    const nodes: React.ReactNode[] = [];
+    let lastIndex = 0;
+    let match: RegExpExecArray | null;
+    let keyIdx = 0;
+
+    while ((match = linkPattern.exec(text)) !== null) {
+      if (match.index > lastIndex) {
+        nodes.push(text.slice(lastIndex, match.index));
+      }
+
+      const label = match[1];
+      const href = match[2];
+      const isExternal = href.startsWith('http://') || href.startsWith('https://');
+
+      if (isExternal) {
+        nodes.push(
+          <a
+            key={`ext-${keyIdx++}`}
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-medium text-[#16283F] underline decoration-[#B8923B]/70 underline-offset-4 hover:text-[#B8923B] transition-colors"
+          >
+            {label}
+          </a>
+        );
+      } else {
+        const parsed = parseRouteFromPathname(href);
+        nodes.push(
+          <a
+            key={`int-${keyIdx++}`}
+            href={href}
+            onClick={(e) => {
+              e.preventDefault();
+              if (onNavigate) {
+                onNavigate(parsed.view, parsed.slug);
+              } else if (parsed.view === 'article' && parsed.slug) {
+                onSelectArticle(parsed.slug);
+              } else if (parsed.view === 'destination' && parsed.slug) {
+                onSelectDestination(parsed.slug);
+              }
+            }}
+            className="font-semibold text-[#16283F] underline decoration-[#B8923B]/70 underline-offset-4 hover:text-[#B8923B] transition-colors"
+          >
+            {label}
+          </a>
+        );
+      }
+
+      lastIndex = match.index + match[0].length;
+    }
+
+    if (lastIndex < text.length) {
+      nodes.push(text.slice(lastIndex));
+    }
+
+    return nodes;
+  };
+
   return (
     <article className="min-h-screen pb-24">
       {/* Header Container */}
@@ -428,6 +496,8 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
           const paragraphs = section.content[currentLang] || section.content.pt || [];
           const subsections = section.subsections?.[currentLang] || [];
           const table = section.table?.[currentLang];
+          const checklistItems = section.checklist?.[currentLang] || [];
+          const toolCallout = section.toolCallout;
           const inlineAlt = section.image?.altByLang?.[currentLang] || section.image?.alt || '';
           const inlineCaption =
             section.image?.captionByLang?.[currentLang] || section.image?.caption || '';
@@ -448,7 +518,7 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
                       : ''
                   }`}
                 >
-                  {paragraph}
+                  {renderRichParagraph(paragraph)}
                 </p>
               ))}
 
@@ -511,12 +581,67 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
                       </h3>
                       {sub.paragraphs.map((subP, spIdx) => (
                         <p key={spIdx} className="text-base sm:text-lg leading-relaxed">
-                          {subP}
+                          {renderRichParagraph(subP)}
                         </p>
                       ))}
                     </div>
                   ))}
                 </div>
+              )}
+
+              {/* Optional Responsive Checklist Grid */}
+              {checklistItems.length > 0 && (
+                <div className="my-6 p-5 sm:p-6 rounded-xl bg-white border border-[#1C2230]/15 shadow-xs">
+                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {checklistItems.map((item, cIdx) => (
+                      <li
+                        key={cIdx}
+                        className="flex items-start gap-2.5 text-sm sm:text-base text-[#1C2230]/85 leading-snug"
+                      >
+                        <span className="mt-0.5 w-5 h-5 rounded-md bg-[#FAF8F3] border border-[#B8923B]/40 flex items-center justify-center shrink-0">
+                          <Check className="w-3.5 h-3.5 text-[#B8923B]" />
+                        </span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {/* Optional Native Editorial Tool Callout */}
+              {toolCallout && (
+                <aside className="my-6 p-5 sm:p-6 rounded-xl bg-white border border-[#1C2230]/15 hover:border-[#B8923B]/60 transition-colors shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <div className="space-y-1.5">
+                    <div className="flex items-center gap-2 text-[11px] uppercase tracking-widest text-[#B8923B] font-semibold">
+                      {toolCallout.view === 'route-calculator' ? (
+                        <Navigation className="w-3.5 h-3.5 shrink-0" />
+                      ) : toolCallout.view === 'comparator' ? (
+                        <Compass className="w-3.5 h-3.5 shrink-0" />
+                      ) : (
+                        <Calculator className="w-3.5 h-3.5 shrink-0" />
+                      )}
+                      <span>{toolCallout.kicker[currentLang] || toolCallout.kicker.pt}</span>
+                    </div>
+                    <h3 className="font-editorial text-xl text-[#16283F] leading-snug">
+                      {toolCallout.title[currentLang] || toolCallout.title.pt}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-[#1C2230]/75 leading-relaxed">
+                      {toolCallout.description[currentLang] || toolCallout.description.pt}
+                    </p>
+                  </div>
+                  <a
+                    href={getPathForRoute(toolCallout.view, undefined, currentLang)}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      if (onNavigate) {
+                        onNavigate(toolCallout.view);
+                      }
+                    }}
+                    className="px-4 py-2.5 bg-[#16283F] text-white text-xs font-semibold rounded-md hover:bg-[#16283F]/90 transition-colors shrink-0 shadow-xs text-center whitespace-nowrap"
+                  >
+                    {toolCallout.ctaLabel[currentLang] || toolCallout.ctaLabel.pt} →
+                  </a>
+                </aside>
               )}
 
               {/* Optional Structured Table */}
